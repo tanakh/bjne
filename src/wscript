@@ -1,0 +1,18 @@
+def set_options(opt):
+    opt.tool_options('boost')
+
+def configure(conf):
+    conf.check_tool('boost')
+    conf.check_boost(lib = 'filesystem', mandatory = True)
+
+    conf.check_cfg(path = 'sdl-config',
+                   args = '--cflags --libs',
+                   package = '',
+                   uselib_store = 'SDL')
+
+def build(bld):
+    bld(features = 'cxx cprogram',
+        source = bld.path.ant_glob('*.cpp mapper/*.cpp'),
+        includes = '. mapper',
+        target = 'bjne',
+        uselib = 'SDL BOOST_FILESYSTEM')
