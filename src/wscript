@@ -8,7 +8,8 @@ def configure(conf):
     conf.check_cfg(path = 'sdl-config',
                    args = '--cflags --libs',
                    package = '',
-                   uselib_store = 'SDL')
+                   uselib_store = 'SDL',
+		   mandatory = True)
 
 def build(bld):
     bld(features = 'cxx cprogram',
